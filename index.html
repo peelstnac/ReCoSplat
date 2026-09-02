@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ReCoSplat is an online feed-forward Gaussian Splatting model for causal, anytime-renderable reconstruction from posed or unposed image streams.">
+  <meta name="theme-color" content="#f7fafb">
+  <meta property="og:title" content="ReCoSplat: Online Feed-Forward Gaussian Splatting via Render-and-Compare">
+  <meta property="og:description" content="Online scene reconstruction from long posed or unposed image streams with causal processing and anytime rendering.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./static/images/lycoreco.png">
+  <title>ReCoSplat: Online Feed-Forward Gaussian Splatting via Render-and-Compare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3VNKV5RHH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Z3VNKV5RHH');
+  </script>
+  <script defer src="./static/js/index.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="ReCoSplat home">
+        <img src="./static/images/lycoreco.png" alt="" width="36" height="36">
+        <span>ReCoSplat</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#videos">Videos</a>
+        <a href="#citation">Citation</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero-section">
+      <div class="wide-shell hero-content">
+        <img class="hero-mark" src="./static/images/lycoreco.png" alt="ReCoSplat logo" width="108" height="108">
+        <p class="eyebrow">Online 3D reconstruction</p>
+        <h1><span>ReCoSplat: Online Feed-Forward Gaussian Splatting</span><span class="title-sub">via Render-and-Compare</span></h1>
+        <div class="authors" aria-label="Authors">
+          <a href="https://freemancheng.com/">Freeman Cheng</a>
+          <a href="https://botaoye.github.io/">Botao Ye</a>
+          <a href="https://sunshineatnoon.github.io/">Xueting Li</a>
+          <a href="https://dhmbb2.github.io/">Junqi You</a>
+          <a href="https://fnzhan.com/">Fangneng Zhan</a>
+          <a href="https://faculty.ucmerced.edu/mhyang/">Ming-Hsuan Yang</a>
+        </div>
+        <div class="resource-links" aria-label="Project resources">
+          <a class="resource-button primary" href="https://arxiv.org/pdf/2603.09968" target="_blank" rel="noopener noreferrer">
+            <svg class="resource-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 2.5h8.2l4.8 4.8v14.2h-13V2.5Zm8 1.8v3.2h3.2l-3.2-3.2ZM8.3 4.2v15.6h9.4V9.2h-4.9v-5H8.3Zm1.6 8.4h6.2v1.5H9.9v-1.5Zm0 3.2h6.2v1.5H9.9v-1.5Z"/></svg>
+            Paper
+          </a>
+          <a class="resource-button" href="https://arxiv.org/abs/2603.09968" target="_blank" rel="noopener noreferrer">
+            <img class="arxiv-icon" src="./static/images/arxiv-mark.svg" alt="" width="18" height="20">
+            arXiv
+          </a>
+          <a class="resource-button" href="https://github.com/peelstnac/ReCoSplat" target="_blank" rel="noopener noreferrer">
+            <svg class="resource-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7A11.5 11.5 0 0 0 8.36 23.1c.58.1.79-.25.79-.56v-2.2c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.18 1.77 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.74.4-1.25.73-1.54-2.57-.3-5.27-1.29-5.27-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.47.11-3.05 0 0 .96-.31 3.16 1.18A10.9 10.9 0 0 1 12 6.13c.98 0 1.95.13 2.87.39 2.2-1.49 3.16-1.18 3.16-1.18.63 1.58.23 2.76.12 3.05.73.81 1.18 1.83 1.18 3.09 0 4.42-2.71 5.39-5.29 5.68.42.36.79 1.07.79 2.16v3.22c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+            Code
+          </a>
+          <a class="resource-button" href="https://huggingface.co/chfrn/ReCoSplat" target="_blank" rel="noopener noreferrer">
+            <img class="hf-icon" src="./static/images/huggingface.svg" alt="" width="20" height="19">
+            Model
+          </a>
+        </div>
+        <p class="hero-summary">Real-time online feed-forward Gaussian Splatting from posed or unposed image streams via render-and-compare conditioning and KV-cache compression.</p>
+        <div class="hero-capabilities" aria-label="ReCoSplat capabilities">
+          <div>
+            <strong>Causal processing</strong>
+            <span>Each update uses only current and past observations.</span>
+          </div>
+          <div>
+            <strong>Anytime rendering</strong>
+            <span>An explicit Gaussian scene is available after every update.</span>
+          </div>
+          <div>
+            <strong>Posed or unposed</strong>
+            <span>Camera poses and intrinsics can be provided or estimated.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-compact" id="abstract">
+      <div class="content-shell abstract-layout">
+        <p class="eyebrow">Abstract</p>
+        <div class="abstract-copy">
+          <p>Online novel view synthesis requires a model to reconstruct a scene causally from a stream of observations while keeping it renderable at every moment. We present <strong>ReCoSplat</strong>, an online feed-forward Gaussian Splatting model supporting both posed and unposed inputs, with or without camera intrinsics. While assembling local Gaussians with camera poses scales better than canonical-space prediction, stable training requires ground-truth poses, creating a distribution mismatch when predicted poses are used at inference. To address this, we introduce a Render-and-Compare module that renders the accumulated scene from the viewpoint of the incoming observation and compares the render with the observation to produce a stable conditioning signal. For long sequences, a hybrid KV-cache compression strategy combines early-layer truncation with chunk-level selective retention, reducing the KV cache by more than 90% for streams of 100 or more frames.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tinted" id="method">
+      <div class="wide-shell">
+        <div class="section-heading centered">
+          <p class="eyebrow">Method</p>
+          <h2>Reconstruct, compare, and update</h2>
+          <p>Each incoming chunk updates both the compressed history and the explicit Gaussian scene.</p>
+        </div>
+        <figure class="method-figure">
+          <img src="./static/images/pipeline.png" alt="ReCoSplat pipeline showing the causal backbone, pose prediction, Render-and-Compare module, local Gaussian prediction, and scene update." width="1912" height="722">
+        </figure>
+        <div class="method-steps">
+          <article>
+            <span>1</span>
+            <div>
+              <h3>Estimate the camera</h3>
+              <p>The pose head predicts camera parameters when they are not provided.</p>
+            </div>
+          </article>
+          <article>
+            <span>2</span>
+            <div>
+              <h3>Render and compare</h3>
+              <p>The accumulated scene is rendered at the assembly pose and paired with the incoming observation.</p>
+            </div>
+          </article>
+          <article>
+            <span>3</span>
+            <div>
+              <h3>Assemble the scene</h3>
+              <p>New local Gaussians are transformed into world coordinates and merged into the scene.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="wide-shell">
+        <div class="section-heading centered">
+          <p class="eyebrow">Quantitative results</p>
+          <h2>Novel view synthesis on DL3DV</h2>
+          <p>Table 1 evaluates 32, 64, 128, and 256 input views sampled from the first 180, 240, 300, and up to 360 frames of each scene, respectively.</p>
+        </div>
+        <div class="tab-list results-tabs" role="tablist" aria-label="Camera input setting">
+          <button type="button" role="tab" aria-selected="true" data-result-setting="unposed-uncalibrated">Unposed · Uncalibrated</button>
+          <button type="button" role="tab" aria-selected="false" data-result-setting="unposed-calibrated">Unposed · Calibrated</button>
+          <button type="button" role="tab" aria-selected="false" data-result-setting="posed-calibrated">Posed · Calibrated</button>
+        </div>
+        <div class="table-card">
+          <div class="table-toolbar">
+            <p id="results-setting-description">Camera poses and intrinsics are estimated by the model.</p>
+            <div class="table-legend" aria-label="Table legend">
+              <span><i class="legend-swatch best"></i>Best online</span>
+              <span><i class="legend-swatch second"></i>Second-best online</span>
+              <span><i class="legend-swatch offline"></i>Offline reference</span>
+            </div>
+          </div>
+          <div class="table-scroll" id="results-table" role="region" aria-live="polite" tabindex="0"></div>
+          <p class="table-note">PSNR and SSIM are higher-is-better; LPIPS is lower-is-better; offline methods access all input views at once and are excluded from the online ranking; N/A† indicates that a method exceeds 48 GB at its training resolution.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="videos">
+      <div class="wide-shell">
+        <div class="section-heading centered light">
+          <p class="eyebrow">Video results</p>
+          <h2>One model, three input settings</h2>
+          <p>Explore novel-view renderings as the input stream grows from 32 to 256 views.</p>
+        </div>
+        <div class="tab-list video-tabs" role="tablist" aria-label="Video input setting">
+          <button type="button" role="tab" aria-selected="true" data-video-setting="unposed_uncalib">Unposed · Uncalibrated</button>
+          <button type="button" role="tab" aria-selected="false" data-video-setting="unposed_calib">Unposed · Calibrated</button>
+          <button type="button" role="tab" aria-selected="false" data-video-setting="posed_calib">Posed · Calibrated</button>
+        </div>
+        <div class="video-grid" id="video-grid" aria-live="polite"></div>
+        <p class="video-note">Videos are muted and loop automatically while visible; select a video to pause or resume it.</p>
+      </div>
+    </section>
+
+    <section class="section" id="efficiency">
+      <div class="content-shell">
+        <div class="section-heading centered">
+          <p class="eyebrow">Online efficiency</p>
+          <h2>Designed for long image streams</h2>
+          <p>Hybrid KV-cache compression keeps the update cost bounded while preserving an explicit, renderable scene.</p>
+        </div>
+        <div class="efficiency-layout">
+          <figure class="efficiency-figure">
+            <img src="./static/images/efficiency.png" alt="Input throughput as the stream grows and peak memory versus number of input views." width="1062" height="538" loading="lazy">
+          </figure>
+          <div class="efficiency-stats">
+            <article>
+              <strong>45.1 FPS</strong>
+              <p>Average input throughput across a 256-view stream.</p>
+            </article>
+            <article>
+              <strong>41.1 FPS</strong>
+              <p>Input throughput at the end of a 256-view stream.</p>
+            </article>
+            <article>
+              <strong>&lt;12 GiB</strong>
+              <p>Average peak memory at 600 input views.</p>
+            </article>
+          </div>
+        </div>
+        <p class="figure-note">Runtime and memory are profiled at 224 × 224 resolution with chunk size 8 on an RTX 6000 Ada GPU.</p>
+      </div>
+    </section>
+
+    <section class="section section-tinted" id="citation">
+      <div class="text-shell">
+        <div class="section-heading">
+          <p class="eyebrow">Citation</p>
+          <h2>Cite ReCoSplat</h2>
+        </div>
+        <div class="citation-card">
+          <button class="copy-button" type="button" data-copy-citation>Copy BibTeX</button>
+          <pre><code id="bibtex">@article{cheng2026recosplat,
+  title   = {ReCoSplat: Online Feed-Forward Gaussian Splatting via Render-and-Compare},
+  author  = {Cheng, Freeman and Ye, Botao and Li, Xueting and You, Junqi and Zhan, Fangneng and Yang, Ming-Hsuan},
+  journal = {arXiv preprint arXiv:2603.09968},
+  year    = {2026}
+}</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="content-shell footer-layout">
+      <div>
+        <strong>ReCoSplat</strong>
+        <p>Online feed-forward Gaussian Splatting via Render-and-Compare.</p>
+      </div>
+      <p>ReCoSplat builds upon <a href="https://botaoye.github.io/yonosplat/" target="_blank" rel="noopener noreferrer">YoNoSplat</a>; this page is adapted from the <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noopener noreferrer">Nerfies</a> template.</p>
+    </div>
+  </footer>
+</body>
+</html>
