@@ -1,0 +1,4 @@
+defaults: [_base, _self_]
+tag: dl3dv_256
+view_sampler:
+  index_path: assets/DL3DV/nvs/dl3dv_start_0_distance_360_ctx_256v_tgt_8v_sequential.json

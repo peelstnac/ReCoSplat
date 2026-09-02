@@ -1,0 +1,4 @@
+defaults: [_base, _self_]
+tag: scannetpp_512
+view_sampler:
+  index_path: assets/ScanNet++/nvs/scannetpp_start_0_distance_None_ctx_512v_tgt_8v_sequential.json

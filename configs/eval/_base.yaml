@@ -1,0 +1,19 @@
+tag: base
+view_sampler:
+  name: evaluation
+  index_path: ???
+  chunk_size_f: 8
+  chunk_size_s: 8
+pose_modes: ["${input_mode.target_pose_mode}"]
+pose_opt:
+  steps: 100
+  rot_lr: 0.005
+  trans_lr: 0.005
+  mse_weight: 1.0
+  lpips_weight: 0.05
+  renderer: splatting_cuda
+render_chunk_size: 1000
+compute_image_metrics: true
+compute_pose_metrics: true
+num_scenes: null
+num_workers: 2

@@ -1,0 +1,16 @@
+defaults:
+  - model: recosplat
+  - dataset: dl3dv
+  - eval: dl3dv_32
+  - input_mode: unposed_calibrated
+  - _self_
+
+seed: 111123
+checkpoint: weights/recosplat.safetensors
+output_dir: outputs/evaluation
+
+hydra:
+  run:
+    dir: outputs/hydra/${now:%Y-%m-%d_%H-%M-%S}
+  job:
+    chdir: false

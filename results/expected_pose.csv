@@ -1,0 +1,7 @@
+protocol,input_mode,num_scenes,pose_auc@5,pose_auc@10,pose_auc@20
+acid_32,unposed_calibrated,755,0.444,0.635,0.764
+acid_64,unposed_calibrated,755,0.406,0.607,0.749
+re10k_64,unposed_calibrated,1648,0.689,0.839,0.917
+re10k_128,unposed_calibrated,1648,0.666,0.823,0.905
+dl3dv_128,unposed_calibrated,140,0.715,0.857,0.928
+dl3dv_256,unposed_calibrated,140,0.709,0.854,0.927

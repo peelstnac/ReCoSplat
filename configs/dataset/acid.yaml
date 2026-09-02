@@ -1,0 +1,12 @@
+name: acid
+roots: ["${oc.env:ACID_ROOT}"]
+image_shape: [224, 224]
+original_image_shape: [360, 640]
+relative_pose: true
+skip_bad_shape: true
+pose_norm_method: max_1
+baseline_min: 1.0e-3
+baseline_max: 1.0e10
+max_fov: 100.0
+near: 0.1
+far: 100.0

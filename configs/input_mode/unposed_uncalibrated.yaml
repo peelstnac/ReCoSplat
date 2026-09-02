@@ -1,0 +1,4 @@
+name: unposed_uncalibrated
+pose_free: true
+use_pred_intrinsics_for_embed: true
+target_pose_mode: pred_optimized

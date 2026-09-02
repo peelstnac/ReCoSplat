@@ -1,0 +1,60 @@
+encoder:
+  backbone:
+    name: local_global
+    intrinsics_embed_degree: 4
+    intrinsics_embed_type: pixelwise
+    predict_intrinsics: true
+    use_pred_intrinsics_for_embed: ${input_mode.use_pred_intrinsics_for_embed}
+    ar:
+      is_enabled: true
+      kv_cache_strategy: accumulate
+    register_tokens: first_chunk_and_last_view_of_next_chunks_is_special
+    override_decoder_block_layer_type:
+      1: ignore_kv_cache
+      3: ignore_kv_cache
+      5: ignore_kv_cache
+      7: ignore_kv_cache
+      9: ignore_kv_cache
+      11: ignore_kv_cache
+      13: ignore_kv_cache
+      15: ignore_kv_cache
+      17: ignore_kv_cache
+      19: ignore_kv_cache
+      21: global_prev_last_view_plus_current
+      23: global_prev_last_view_plus_current
+      25: global_prev_last_view_plus_current
+      27: global_prev_last_view_plus_current
+      29: global_prev_last_view_plus_current
+      31: global_prev_last_view_plus_current
+      33: global_prev_last_view_plus_current
+      35: global_prev_last_view_plus_current
+    rope_anchor_grid: null
+
+  gaussian_adapter:
+    gaussian_scale_min: 0.5
+    gaussian_scale_max: 15.0
+
+  opacity_mapping:
+    initial: 0.0
+    final: 0.0
+    warm_up: 1
+
+  num_surfaces: 1
+  gaussians_per_axis: 14
+  pose_free: ${input_mode.pose_free}
+  gaussian_downsample_ratio: 1
+  upscale_token_ratio: 2
+
+  pose_feature_guidance:
+    enabled: true
+    rendered_feature_dim: 9
+    zero_init: true
+
+  scale:
+    gs_scale_matching: first_chunk
+
+decoder:
+  name: splatting_cuda
+  background_color: [0.0, 0.0, 0.0]
+  make_scale_invariant: true
+  prune_opacity_threshold: 0.005

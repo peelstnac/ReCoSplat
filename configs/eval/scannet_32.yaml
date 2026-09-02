@@ -1,0 +1,4 @@
+defaults: [_base, _self_]
+tag: scannet_32
+view_sampler:
+  index_path: assets/ScanNet/nvs/scannet_start_0_distance_640_ctx_32v_tgt_8v_sequential.json

@@ -1,0 +1,4 @@
+defaults: [_base, _self_]
+tag: re10k_128
+view_sampler:
+  index_path: assets/RE10K/nvs/re10k_start_0_distance_None_ctx_128v_tgt_8v_sequential.json

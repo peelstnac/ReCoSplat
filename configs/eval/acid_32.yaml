@@ -1,0 +1,4 @@
+defaults: [_base, _self_]
+tag: acid_32
+view_sampler:
+  index_path: assets/ACID/nvs/acid_start_0_distance_None_ctx_32v_tgt_8v_sequential.json

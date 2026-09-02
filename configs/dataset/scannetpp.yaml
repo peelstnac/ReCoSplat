@@ -1,0 +1,12 @@
+name: scannetpp
+roots: ["${oc.env:SCANNETPP_ROOT}"]
+image_shape: [224, 224]
+original_image_shape: [224, 224]
+relative_pose: true
+skip_bad_shape: true
+pose_norm_method: max_1
+baseline_min: 1.0e-3
+baseline_max: 1.0e2
+max_fov: 120.0
+near: 0.1
+far: 100.0
