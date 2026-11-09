@@ -462,6 +462,48 @@ h3 {
   grid-template-columns: 110px minmax(0, 1fr);
 }
 
+.demo-section {
+  padding-top: 0;
+  padding-bottom: 1rem;
+}
+
+.demo-section .section-heading {
+  margin-bottom: 1.5rem;
+}
+
+.demo-figure {
+  margin: 0;
+}
+
+.demo-video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #fff;
+}
+
+.demo-caption {
+  max-width: 1000px;
+  margin: 1.25rem auto 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.demo-caption p {
+  margin-bottom: 0.65rem;
+}
+
+.demo-caption .demo-caption-meta {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.demo-caption a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 .abstract-layout > .eyebrow {
   padding-top: 0.32rem;
 }

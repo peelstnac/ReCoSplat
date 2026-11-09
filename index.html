@@ -38,6 +38,7 @@
         <span class="sr-only">Toggle navigation</span>
       </button>
       <div class="nav-links" id="nav-links">
+        <a href="#demo">Demo</a>
         <a href="#method">Method</a>
         <a href="#results">Results</a>
         <a href="#videos">Videos</a>
@@ -93,6 +94,28 @@
             <span>Camera poses and intrinsics can be provided or estimated.</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section demo-section" id="demo" aria-labelledby="demo-heading">
+      <div class="wide-shell">
+        <div class="section-heading centered">
+          <h2 id="demo-heading">Online reconstruction, chunk by chunk</h2>
+          <p>Watch the camera trajectory and Gaussian scene grow as new observations arrive.</p>
+        </div>
+        <figure class="demo-figure">
+          <video class="demo-video" id="reconstruction-demo" controls muted loop playsinline preload="none"
+                 width="1920" height="1080" poster="./static/images/chunk-reconstruction-poster.jpg"
+                 aria-label="ReCoSplat streaming reconstruction with predicted and ground-truth cameras, RGB, and depth"
+                 aria-describedby="demo-caption">
+            <source src="./static/videos/chunk-reconstruction-rgb-depth.mp4" type="video/mp4">
+            <a href="./static/videos/chunk-reconstruction-rgb-depth.mp4">Download the reconstruction demo.</a>
+          </video>
+          <figcaption class="demo-caption" id="demo-caption">
+            <p><strong>128 views, processed in 16 chunks of eight.</strong> This DL3DV test scene uses predicted camera poses and provided intrinsics. Left: predicted (blue) and ground-truth (orange) cameras appear as each chunk arrives. Right: RGB and depth renders show the scene before and after integration, with the viewpoint held fixed during each comparison.</p>
+            <p class="demo-caption-meta">Playback is paced for illustration. Depth uses a fixed inverse-depth color scale. <a href="./static/videos/chunk-reconstruction-rgb-depth.mp4" download>Download video</a></p>
+          </figcaption>
+        </figure>
       </div>
     </section>
 

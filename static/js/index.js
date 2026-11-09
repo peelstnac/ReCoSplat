@@ -165,6 +165,50 @@ function renderVideos(setting) {
   });
 }
 
+function configureDemoVideo() {
+  const video = document.querySelector("#reconstruction-demo");
+  if (!video) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let visible = false;
+  let userPaused = false;
+  let automaticPause = false;
+
+  function pauseOffscreen() {
+    if (!video.paused) {
+      automaticPause = true;
+      video.pause();
+    }
+  }
+
+  function updatePlayback() {
+    if (!visible || document.hidden) {
+      pauseOffscreen();
+    } else if (!reduceMotion.matches && !navigator.connection?.saveData && !userPaused) {
+      video.play().catch(() => {});
+    }
+  }
+
+  video.addEventListener("pause", () => {
+    if (!automaticPause) userPaused = true;
+    automaticPause = false;
+  });
+  video.addEventListener("play", () => { userPaused = false; });
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting && entry.intersectionRatio >= 0.35;
+      updatePlayback();
+    }, { threshold: [0, 0.35] });
+    observer.observe(video);
+  }
+  document.addEventListener("visibilitychange", updatePlayback);
+  reduceMotion.addEventListener("change", () => {
+    if (reduceMotion.matches) pauseOffscreen();
+    else updatePlayback();
+  });
+}
+
 function configureTabList(selector, dataAttribute, onChange) {
   const tabs = [...document.querySelectorAll(`${selector} [${dataAttribute}]`)];
   tabs.forEach((tab, index) => {
@@ -233,6 +277,7 @@ function configureCitationCopy() {
 
 document.addEventListener("DOMContentLoaded", () => {
   configureNavigation();
+  configureDemoVideo();
   renderResultsTable("unposed-uncalibrated");
   renderVideos("unposed_uncalib");
   configureTabList(".results-tabs", "data-result-setting", renderResultsTable);
