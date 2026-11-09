@@ -467,10 +467,6 @@ h3 {
   padding-bottom: 1rem;
 }
 
-.demo-section .section-heading {
-  margin-bottom: 1.5rem;
-}
-
 .demo-figure {
   margin: 0;
 }
@@ -484,24 +480,10 @@ h3 {
 
 .demo-caption {
   max-width: 1000px;
-  margin: 1.25rem auto 0;
-  color: var(--ink-soft);
-  font-size: 0.9rem;
-}
-
-.demo-caption p {
-  margin-bottom: 0.65rem;
-}
-
-.demo-caption .demo-caption-meta {
-  margin-bottom: 0;
+  margin: 1rem auto 0;
   color: var(--muted);
   font-size: 0.8rem;
-}
-
-.demo-caption a {
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
+  text-align: center;
 }
 
 .abstract-layout > .eyebrow {
