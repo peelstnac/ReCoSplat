@@ -10,7 +10,7 @@
   <a href="https://huggingface.co/chfrn/ReCoSplat">Model</a>
 </p>
 
-Official inference and evaluation code of **ReCoSplat: Online Feed-Forward Gaussian Splatting via Render-and-Compare**.
+Official inference and evaluation code of **ReCoSplat: Online Feed-Forward Gaussian Splatting via Render-and-Compare**, with an RGB-only fine-tuning recipe.
 
 Freeman Cheng, Botao Ye, Xueting Li, Junqi You, Fangneng Zhan, Ming-Hsuan Yang
 
@@ -223,6 +223,11 @@ The exported directory can be opened with the [reference 3DGS viewer](https://gi
 SIBR_gaussianViewer_app -m outputs/colmap/my_scene \
   -s outputs/colmap/my_scene
 ```
+
+## RGB-only training
+
+Use [scripts/train_rgb.sh](scripts/train_rgb.sh); settings and training assumptions
+are in [configs/train_rgb.yaml](configs/train_rgb.yaml).
 
 ## 🙏 Acknowledgements
 

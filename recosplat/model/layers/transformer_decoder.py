@@ -4,6 +4,7 @@ from functools import partial
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
+from torch.utils.checkpoint import checkpoint
 
 from ..backbone.dinov2.layers import Mlp
 from .attention import FlashAttentionRope, FlashCrossAttentionRope
@@ -28,6 +29,7 @@ class TransformerDecoder(nn.Module):
         super().__init__()
 
         self.depth = depth
+        self.use_checkpoint = False
         self.projects = nn.Linear(in_dim, dec_embed_dim) if need_project else nn.Identity()
 
         self.blocks = nn.ModuleList(
@@ -107,7 +109,10 @@ class TransformerDecoder(nn.Module):
                 "guidance_tokens": guidance_tokens_i,
                 "guidance_pos": guidance_pos_i,
             }
-            hidden = blk(hidden, **block_kwargs)
+            if self.training and self.use_checkpoint:
+                hidden = checkpoint(blk, hidden, use_reentrant=False, **block_kwargs)
+            else:
+                hidden = blk(hidden, **block_kwargs)
             if return_intermediates:
                 intermediates.append(hidden)
         out = self.linear_out(hidden)

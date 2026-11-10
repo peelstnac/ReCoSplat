@@ -1,0 +1,50 @@
+defaults:
+  - model: recosplat
+  - input_mode: posed_calibrated
+  - _self_
+
+# RGB-only fine-tuning from the released model, not the original Table 4 run.
+# Remove learned Gaussian features; keep rendered RGB + observed RGB conditioning.
+# Backbone KV history is retained. An external map alone cannot replace it;
+# omitting that history requires adaptation/retraining and is not supported here.
+model:
+  encoder:
+    pose_feature_guidance:
+      enabled: true
+      rendered_feature_dim: 0
+  decoder:
+    name: splatting_gsplat
+checkpoint: weights/recosplat.safetensors
+# A fresh directory: resolved config, metrics.jsonl, rgb-XXXXXX.safetensors.
+# Loading an RGB export starts a new fine-tune; optimizer state is not resumed.
+output_dir: outputs/train_rgb
+# train/*.torch: lists of scenes with encoded uint8 image bytes in `images` and
+# [N,18] `cameras` rows: [fx, fy, cx, cy, 0, 0, flattened OpenCV w2c_3x4].
+# Intrinsics are normalized by image dimensions; images are cropped to 224x224.
+data_root: ${oc.env:TRAIN_ROOT,null}
+seed: 111123
+steps: 150000
+save_every: 10000
+# Batch size 1; ordered contexts and disjoint targets within max_span frames.
+context_views: 16
+target_views: 8
+chunk_size: 8
+max_span: 128
+# AdamW, BF16, activation checkpointing; freeze DINO and train the other modules.
+# GT poses guide assembly/rendering; RGB guidance is detached, KV history is not.
+lr: 0.000005
+warmup_steps: 1000
+weight_decay: 0.05
+grad_clip: 1.0
+loss:
+  mse: 1.0
+  lpips: 0.05  # VGG weights may download on first use.
+  intrinsic: 0.5
+  pose: 0.1
+  opacity: 0.01
+
+hydra:
+  run:
+    dir: ${output_dir}/hydra/${now:%Y-%m-%d_%H-%M-%S}
+  job:
+    chdir: false
